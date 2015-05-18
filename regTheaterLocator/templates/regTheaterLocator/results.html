@@ -1,0 +1,34 @@
+{% extends "regTheaterLocator/base.html" %}
+{% block title %}
+
+    Search for shows
+        
+{% endblock %}
+
+{% block content %}
+        
+        <div class="row">
+            {% for theater in theaters %}
+                <div class="card-panel col s4">
+                    <p> {{theater.name}}<p>
+                    
+                    
+                    <button class="btn-floating btn-tiny waves-effect waves-light teal" type="submit" form="{{theater.id}}">
+                        <i class="mdi-communication-business tiny"></i>
+                    </button>
+                        
+                <form method="GET" action="{% url 'viewProfile' %}" id="{{theater.id}}">
+                    <input type="hidden" name="theater" value="{{theater.name}}">
+                    {% csrf_token %}
+                </form>    
+                </div>
+            {% endfor %}
+            
+        </div>
+
+        
+{% endblock %}
+
+{% block scriptss %}
+
+{% endblock %}     
